@@ -9,7 +9,7 @@
 \usepackage{amsmath}
 
 % theme
-\usetheme{Berlin}
+% \usetheme{Berlin}
 
 % title
 \title{Weekly Report}
@@ -28,7 +28,7 @@
 \begin{frame}
     \frametitle{N-gram}
 
-    $n$-gram is a choice to represent the word, the sentence, or the document. It is originally used to predict the next word in a sentence. 
+    $n$-gram is a choice to represent the word, the sentence, or the document. It is originally used to predict the next word in a sentence.
 
     \begin{block}{Example for Bi-gram}
         $w_1$ \fbox{$w_2$ $w_3$} $w_4$
@@ -36,10 +36,10 @@
         where the ``$w_2$ $w_3$'' is the bi-gram.
     \end{block}
 
-    To calculate the probability of "$w_4$" after ``$w_1$ $w_2$ $w_3$'', using Markov assumption, we have
+    To calculate the probability of ``$b_n$'' ($b_i = w_iw_{i+1}$), using Markov assumption, we have
     \begin{align*}
-        P\left(w_{1: n}\right) & =P\left(w_1\right) P\left(w_2 \mid w_1\right) P\left(w_3 \mid w_{1: 2}\right) \ldots P\left(w_n \mid w_{1: n-1}\right) \\
-        & =\prod_{k=1}^n P\left(w_k \mid w_{1: k-1}\right)
+        P\left(b_{1: n}\right) & =P\left(b_1\right) P\left(b_2 \mid b_1\right) P\left(b_3 \mid b_{1: 2}\right) \ldots P\left(b_n \mid b_{1: n-1}\right) \\
+                               & =\prod_{k=1}^n P\left(b_k \mid b_{1: k-1}\right)
     \end{align*}
 
 \end{frame}
@@ -48,42 +48,34 @@
 % I want to solve the problem of LLM: model too big, and the training process is too slow
 
 \begin{frame}
-    \frametitle{Large Language Model}
-
-    \begin{block}{Problem}
+    \frametitle{Challenges in Training Large Language Models}
+    \begin{block}{Training Duration is very Long}
         \begin{itemize}
-            \item The model is too big: GPT-3 comes in eight sizes, ranging from 125M to 175B parameters.
-            \item The training process is too slow: 355 GPU-years and cost \$4.6M for a single training run.
+            \item Model Size: Larger models require more resources and time.
+            \item Dataset Size: Larger datasets slow down training. Parallel computing, via partitioning the dataset, is a common solution.
         \end{itemize}
     \end{block}
+
+    \begin{block}{Partitioning Problem}
+        \begin{itemize}
+            \item Random Partitioning: A common but problematic method due to it divides the related data into different parts.
+        \end{itemize}
+    \end{block}
+
 \end{frame}
 
 % Solution
 % Partition the training data into several parts, but they do it randomly. I want to do it in a more reasonable way, using co-clustering and make the ensemble process more efficient.
 
 \begin{frame}
-    \frametitle{Solution}
-
-    \begin{block}{Partition the training data}
+    \frametitle{Proposed Solution: Co-clustering for Data Partitioning}
+    \begin{block}{Why Co-clustering?}
         \begin{itemize}
-            \item Partition the training data into several parts.
-            \item Use co-clustering to partition the training data.
-            \item Make the ensemble process more efficient.
+            \item NLP Datasets as Matrices: Natural Language Processing datasets can be effectively represented as matrices, making them suitable for co-clustering.
+            \item Improved Communication: Grouping related parts of the data together can reduce communication overhead during parallel processing.
+            \item Reduced Training Set Size: Co-clustering similar training data can potentially decrease the size of the training set, thus speeding up the training process.
         \end{itemize}
     \end{block}
-
-    \begin{block}{Notes}
-        \begin{itemize}
-            \item Some literature research is done and no one pays attention to partition the training data in this way.
-            \item The dataset for NLP can be formed as a matrix and those that can be formalized as a tensor can also be partitioned in this way.
-        \end{itemize}
-    \end{block}
-
-
-% NLP can be formed as a matrix and those that can be formalized as a tensor can also be partitioned in this way.
-% The dataset for NLP can be formed as a matrix and those that can be formalized as a tensor can also be partitioned in this way.
-
-
 \end{frame}
 
 
