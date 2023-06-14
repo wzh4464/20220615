@@ -1,0 +1,90 @@
+% beamer for weekly report
+% Created by Zihan on 2023-06-14
+
+% turn off sans-serif math
+\documentclass[serif]{beamer}
+
+% Packages
+% \Sum
+\usepackage{amsmath}
+
+% theme
+\usetheme{Berlin}
+
+% title
+\title{Weekly Report}
+
+% author
+\author{Zihan}
+
+% date
+\date{\today}
+
+% Document
+\begin{document}
+
+% first page
+% tell the supervisor that what I think of n-gram
+\begin{frame}
+    \frametitle{N-gram}
+
+    $n$-gram is a choice to represent the word, the sentence, or the document. It is originally used to predict the next word in a sentence. 
+
+    \begin{block}{Example for Bi-gram}
+        $w_1$ \fbox{$w_2$ $w_3$} $w_4$
+
+        where the ``$w_2$ $w_3$'' is the bi-gram.
+    \end{block}
+
+    To calculate the probability of "$w_4$" after ``$w_1$ $w_2$ $w_3$'', using Markov assumption, we have
+    \begin{align*}
+        P\left(w_{1: n}\right) & =P\left(w_1\right) P\left(w_2 \mid w_1\right) P\left(w_3 \mid w_{1: 2}\right) \ldots P\left(w_n \mid w_{1: n-1}\right) \\
+        & =\prod_{k=1}^n P\left(w_k \mid w_{1: k-1}\right)
+    \end{align*}
+
+\end{frame}
+
+% second page
+% I want to solve the problem of LLM: model too big, and the training process is too slow
+
+\begin{frame}
+    \frametitle{Large Language Model}
+
+    \begin{block}{Problem}
+        \begin{itemize}
+            \item The model is too big: GPT-3 comes in eight sizes, ranging from 125M to 175B parameters.
+            \item The training process is too slow: 355 GPU-years and cost \$4.6M for a single training run.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% Solution
+% Partition the training data into several parts, but they do it randomly. I want to do it in a more reasonable way, using co-clustering and make the ensemble process more efficient.
+
+\begin{frame}
+    \frametitle{Solution}
+
+    \begin{block}{Partition the training data}
+        \begin{itemize}
+            \item Partition the training data into several parts.
+            \item Use co-clustering to partition the training data.
+            \item Make the ensemble process more efficient.
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Notes}
+        \begin{itemize}
+            \item Some literature research is done and no one pays attention to partition the training data in this way.
+            \item The dataset for NLP can be formed as a matrix and those that can be formalized as a tensor can also be partitioned in this way.
+        \end{itemize}
+    \end{block}
+
+
+% NLP can be formed as a matrix and those that can be formalized as a tensor can also be partitioned in this way.
+% The dataset for NLP can be formed as a matrix and those that can be formalized as a tensor can also be partitioned in this way.
+
+
+\end{frame}
+
+
+\end{document}

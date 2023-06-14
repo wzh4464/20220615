@@ -1,0 +1,27 @@
+# gitignore
+
+# Mac
+.DS_Store
+
+# latex
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.synctex(busy)
+*.synctex.gz(busy)
+*.pdfsync
+*.ind
+*.ilg
+*.idx
+*.lof
+*.lot
+*.nav
+*.snm
