@@ -2,14 +2,19 @@
 % Created by Zihan on 2023-06-14
 
 % turn off sans-serif math
-\documentclass[serif]{beamer}
+\documentclass[11pt]{beamer}
 
 % Packages
 % \Sum
 \usepackage{amsmath}
+% \coloneqq
+\usepackage{mathtools}
+% bookmark
+\usepackage{bookmark}
 
 % theme
-% \usetheme{Berlin}
+\usetheme{default}
+\usefonttheme{serif}
 
 % title
 \title{Weekly Report}
@@ -45,22 +50,58 @@
 \end{frame}
 
 % second page
+% My thought of n-gram and co-clustering
+
+% it uses Markov assumption and gets the 共现概率 for each two words, and then we may get the 共现概率 matrix which is similar to the compatibility matrix in co-clustering. 
+
+\begin{frame}
+    \frametitle{N-gram and Co-clustering: A Conceptual Link}
+    \begin{block}{From N-gram to Co-clustering}
+        \begin{itemize}
+            \item Markov Assumption: This principle is used to calculate the co-occurrence probability for each pair of words.
+            \item Co-occurrence Probability Matrix: The calculated probabilities form a matrix, which is conceptually similar to the compatibility matrix used in co-clustering.
+        \end{itemize}
+    \end{block}
+    \begin{block}{Co-occurrence Probability Matrix}
+        \begin{equation*}
+            p_{i j} \coloneqq P\left(b_i \mid b_j\right) = P\left(b_i | b_{i-1}\right) P\left(b_{i-1} | b_{i-2}\right) \ldots P\left(b_{j+1} | b_j\right)
+        \end{equation*}
+    \end{block}
+\end{frame}    
+
+
+
+
+
+
 % I want to solve the problem of LLM: model too big, and the training process is too slow
 
 \begin{frame}
     \frametitle{Challenges in Training Large Language Models}
-    \begin{block}{Training Duration is very Long}
-        \begin{itemize}
-            \item Model Size: Larger models require more resources and time.
-            \item Dataset Size: Larger datasets slow down training. Parallel computing, via partitioning the dataset, is a common solution.
-        \end{itemize}
-    \end{block}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.6\textwidth}
+        \begin{block}{Training Duration is very Long}
+            \begin{itemize}
+                \item Model Size: Larger models require more resources and time.
+                \item Dataset Size: Ensemble Learning, parallel computing, via partitioning the dataset, is a common solution.
+            \end{itemize}
+        \end{block}
+    
+        \begin{block}{Partitioning Problem}
+            \begin{itemize}
+                \item Random Partitioning: A common but problematic method due to it divides the related data into different parts.
+            \end{itemize}
+        \end{block}
 
-    \begin{block}{Partitioning Problem}
-        \begin{itemize}
-            \item Random Partitioning: A common but problematic method due to it divides the related data into different parts.
-        \end{itemize}
-    \end{block}
+        \column{0.3\textwidth}
+        \begin{figure}
+            \includegraphics[width=\textwidth]{esb.png}
+            \caption{Ensemble Learning[1]}
+        \end{figure}
+    \end{columns}
+
+    [1] F. López, “Ensemble Learning: Bagging \& Boosting,” Medium, Jan. 18, 2021.
+
 
 \end{frame}
 
@@ -80,3 +121,4 @@
 
 
 \end{document}
+
