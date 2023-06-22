@@ -60,22 +60,23 @@
 \begin{frame}
     \frametitle{My Proposal}
     \begin{itemize}
-        \item \textbf{Method}
-              \begin{itemize}
-                  \item Use Gabor filter to extract features from facial images
-                  \item Use co-clustering to attain a subset of features and samples
-                  \item Use a classifier to classify facial expressions
-                  \item Use the classifier to find the probability that a co-cluster is related to a certain class
-                  \item Features with high probability are selected
-              \end{itemize}
+        \item Word-embedding or $n$-gram to extract features from text
+        \item (Maybe) Generate more features from the results above
+        \item Use co-clustering to attain a subset of features and samples
+        \item Select features that are related to a certain class most
     \end{itemize}
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=\textwidth]{khan.png}
-        \caption{Khan et al. 2017}
-    \end{figure}
 \end{frame}
 
+% third page
+% I find another very high-quality paper about the feature selection in general case, which is 2017 best paper of ICML
 
+\begin{frame}
+    \frametitle{Best Paper of ICML 2017}
+    \begin{itemize}
+        \item \textbf{Title} Understanding Black-box Predictions via Influence Functions
+        \item \textbf{Authors} Pang Wei Koh, Percy Liang
+        \item \textbf{Introduction} This paper uses influence function to measure the importance of each training sample and feature. 
+    \end{itemize}
+\end{frame}
 
 \end{document}
