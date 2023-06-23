@@ -65,18 +65,41 @@
         \item Use co-clustering to attain a subset of features and samples
         \item Select features that are related to a certain class most
     \end{itemize}
+    % insert mypro.jpeg
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.6\textwidth]{mypro.jpeg}
+        \caption{My Proposal, colors for classes}
+    \end{figure}
 \end{frame}
 
 % third page
 % I find another very high-quality paper about the feature selection in general case, which is 2017 best paper of ICML
 
 \begin{frame}
-    \frametitle{Best Paper of ICML 2017}
+    \frametitle{Understanding Black-box Predictions via Influence Functions (ICML 2017 Best Paper)}
     \begin{itemize}
-        \item \textbf{Title} Understanding Black-box Predictions via Influence Functions
-        \item \textbf{Authors} Pang Wei Koh, Percy Liang
-        \item \textbf{Introduction} This paper uses influence function to measure the importance of each training sample and feature. 
+        \item \textbf{Introduction} This paper uses influence function to measure the importance of each training sample and feature. It can be applied to any model that is
+              % 二阶可微
+              twice differentiable.
     \end{itemize}
+    $$
+        z_\delta \stackrel{\text { def }}{=}(x+\delta, y),
+        \hat{\theta}_{\epsilon, z} \stackrel{\text { def }}{=} \arg \min _{\theta \in \Theta} \frac{1}{n} \sum_{i=1}^n L\left(z_i, \theta\right)+\epsilon L(z, \theta)
+    $$
+    $$
+        \hat{\theta}_{\epsilon, z_\delta,-z} \stackrel{\text { def }}{=}\arg \min _{\theta \in \Theta} \frac{1}{n} \sum_{i=1}^n L\left(z_i, \theta\right)+\epsilon L\left(z_\delta, \theta\right)-\epsilon L(z, \theta)
+    $$
+    $$
+        \left.\mathcal{I}_{\text {up,params }}(z) \stackrel{\text { def }}{=} \frac{d \hat{\theta}_{\epsilon, z}}{d \epsilon}\right|_{\epsilon=0}=-H_{\hat{\theta}}^{-1} \nabla_\theta L(z, \hat{\theta})
+    $$
+    $$
+        \begin{aligned}
+            \mathcal{I}_{\text {pert,loss }}\left(z, z_{\text {test }}\right)^{\top} & \left.\stackrel{\text { def }}{=} \nabla_\delta L\left(z_{\text {test }}, \hat{\theta}_{z_\delta,-z}\right)^{\top}\right|_{\delta=0} \\
+                                                                                     & =-\nabla_\theta L\left(z_{\text {test }}, \hat{\theta}\right)^{\top} H_{\hat{\theta}}^{-1} \nabla_x \nabla_\theta L(z, \hat{\theta})
+        \end{aligned}
+    $$
 \end{frame}
+
 
 \end{document}
